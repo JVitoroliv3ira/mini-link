@@ -1,0 +1,22 @@
+using FluentMigrator;
+
+namespace MiniLink.Infrastructure.Migrations;
+
+[Migration(002)]
+public class V002_CreateLinksTable : Migration
+{
+    public override void Up()
+    {
+        Create.Table("TB_LINKS")
+            .WithColumn("ID").AsInt32().PrimaryKey().NotNullable()
+            .WithColumn("ORIGINAL_URL").AsString(int.MaxValue).NotNullable()
+            .WithColumn("SLUG").AsString(6).NotNullable().Unique()
+            .WithColumn("CREATED_AT").AsDateTime().NotNullable()
+            .WithColumn("EXPIRES_AT").AsDate().Nullable();
+    }
+
+    public override void Down()
+    {
+        Delete.Table("TB_LINKS");
+    }
+}
