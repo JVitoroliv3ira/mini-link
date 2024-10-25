@@ -6,4 +6,8 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\MiniLink.Domain\MiniLink.Domain.csproj" />
+    </ItemGroup>
+
 </Project>
