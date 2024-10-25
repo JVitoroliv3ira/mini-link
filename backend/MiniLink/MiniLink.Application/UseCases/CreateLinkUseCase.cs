@@ -22,7 +22,7 @@ public class CreateLinkUseCase : ICreateLinkUseCase
         var link = new Link
         {
             OriginalUrl = dto.OriginalUrl,
-            Slug = GenerateUniqueSlug(),
+            Slug = await GenerateUniqueSlug(),
             CreatedAt = DateTime.UtcNow,
             ExpiresAt = DateOnly.FromDateTime(DateTime.UtcNow).AddDays(DaysUntilExpiration)
         };
