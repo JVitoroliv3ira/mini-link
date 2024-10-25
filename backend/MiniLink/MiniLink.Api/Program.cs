@@ -1,6 +1,8 @@
 using FluentMigrator.Runner;
 using Microsoft.EntityFrameworkCore;
+using MiniLink.Domain.Repositories;
 using MiniLink.Infrastructure.Context;
+using MiniLink.Infrastructure.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +22,9 @@ builder.Services.AddFluentMigratorCore()
         .WithGlobalConnectionString(migrationConnectionString)
         .ScanIn(typeof(MiniLink.Infrastructure.Migrations.V001_CreateLinksSequence).Assembly).For.Migrations())
     .AddLogging(lb => lb.AddFluentMigratorConsole());
+
+builder.Services.AddScoped(typeof(IRepositoryBase<>), typeof(RepositoryBase<>));
+builder.Services.AddScoped<ILinkRepository, LinkRepository>();
 
 var app = builder.Build();
 
