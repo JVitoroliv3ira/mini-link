@@ -5,7 +5,6 @@ using MiniLink.Domain.Dtos.Link;
 
 namespace MiniLink.Api.Controllers;
 
-
 [ApiController]
 [Route("[controller]")]
 public class LinkController : ControllerBase
@@ -31,25 +30,26 @@ public class LinkController : ControllerBase
                 .SelectMany(v => v.Errors)
                 .Select(e => e.ErrorMessage)
                 .ToList();
-            
-            return StatusCode(400, new ApiResponse<string>(false, "Erro de validação", null, errors));
+
+            return BadRequest(new ApiResponse<string>(false, "Erro de validação", null, errors));
         }
-        
+
         try
         {
             var link = await _shortenLinkUseCase.Execute(request);
-            return Ok(new
-            {
-                link.Slug
-            });
+            return Ok(new ApiResponse<object>(
+                true,
+                "Link encurtado com sucesso",
+                new { link.Slug }
+            ));
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex.Message);
-            return StatusCode(
-                500,
+            _logger.LogError(ex, "Erro ao encurtar o link.");
+            return StatusCode(500, new ApiResponse<string>(
+                false,
                 "Ocorreu um erro inesperado ao encurtar o link."
-            );
+            ));
         }
     }
 }
