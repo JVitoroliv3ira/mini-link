@@ -8,9 +8,9 @@ public class V002_CreateLinksTable : Migration
     public override void Up()
     {
         Create.Table("TB_LINKS")
-            .WithColumn("ID").AsInt32().PrimaryKey().NotNullable()
+            .WithColumn("ID").AsInt32().PrimaryKey("PK_LINK").NotNullable()
             .WithColumn("ORIGINAL_URL").AsString(int.MaxValue).NotNullable()
-            .WithColumn("SLUG").AsString(6).NotNullable().Unique()
+            .WithColumn("SLUG").AsString(6).NotNullable().Unique("IX_TB_LINKS_SLUG")
             .WithColumn("CREATED_AT").AsDateTime().NotNullable()
             .WithColumn("EXPIRES_AT").AsDate().Nullable();
     }
