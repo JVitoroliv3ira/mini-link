@@ -13,10 +13,13 @@ public class V002_CreateLinksTable : Migration
             .WithColumn("SLUG").AsString(6).NotNullable().Unique("IX_TB_LINKS_SLUG")
             .WithColumn("CREATED_AT").AsDateTime().NotNullable()
             .WithColumn("EXPIRES_AT").AsDate().Nullable();
+        
+        Execute.Sql("GRANT SELECT, INSERT, UPDATE, DELETE ON TB_LINKS TO dminilink;");
     }
 
     public override void Down()
     {
+        Execute.Sql("REVOKE SELECT, INSERT, UPDATE, DELETE ON TB_LINKS FROM dminilink;");
         Delete.Table("TB_LINKS");
     }
 }
