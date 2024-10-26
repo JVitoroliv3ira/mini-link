@@ -16,6 +16,8 @@ public class ApplicationDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.HasSequence<int>("SQ_LINKS", "public");
+        
         modelBuilder.ApplyConfiguration(new LinkConfiguration());
     }
 }

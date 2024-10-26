@@ -15,12 +15,13 @@ public class LinkConfiguration : IEntityTypeConfiguration<Link>
         builder.Property(e => e.Id)
             .HasColumnName("ID")
             .HasColumnType("int")
-            .HasDefaultValueSql("NEXT VALUE FOR SQ_LINKS");
+            .UseSequence("SQ_LINKS", "public")
+            .ValueGeneratedOnAdd();
 
         builder.Property(e => e.OriginalUrl)
             .IsRequired()
             .HasColumnName("ORIGINAL_URL")
-            .HasColumnType("nvarchar(max)");
+            .HasColumnType("text");
 
         builder.Property(e => e.Slug)
             .IsRequired()
