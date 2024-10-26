@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using MiniLink.Application.IUseCases;
-using MiniLink.Domain.Dtos;
 using MiniLink.Domain.Dtos.Requests.Link;
 using MiniLink.Domain.Dtos.Responses;
 
