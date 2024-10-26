@@ -5,5 +5,5 @@ namespace MiniLink.Application.IUseCases;
 
 public interface IShortenLinkUseCase
 {
-    Task<Link> Execute(CreateLinkDto dto);
+    Task<Link> Execute(ShortenLinkDto dto);
 }

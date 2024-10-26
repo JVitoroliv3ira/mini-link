@@ -22,7 +22,7 @@ public class LinkController : ControllerBase
     }
 
     [HttpPost("shorten")]
-    public async Task<IActionResult> ShortenLink([FromBody] CreateLinkDto request)
+    public async Task<IActionResult> ShortenLink([FromBody] ShortenLinkDto request)
     {
         try
         {

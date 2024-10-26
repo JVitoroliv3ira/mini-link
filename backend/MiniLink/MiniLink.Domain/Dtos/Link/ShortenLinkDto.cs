@@ -1,6 +1,6 @@
 namespace MiniLink.Domain.Dtos.Link;
 
-public class CreateLinkDto
+public class ShortenLinkDto
 {
     public string OriginalUrl { get; set; }
 }

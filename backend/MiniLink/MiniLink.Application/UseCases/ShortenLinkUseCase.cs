@@ -17,7 +17,7 @@ public class ShortenLinkUseCase : IShortenLinkUseCase
         _linkRepository = linkRepository;
     }
 
-    public async Task<Link> Execute(CreateLinkDto dto)
+    public async Task<Link> Execute(ShortenLinkDto dto)
     {
         var link = new Link
         {
