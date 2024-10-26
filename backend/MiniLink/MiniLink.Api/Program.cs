@@ -1,5 +1,7 @@
 using FluentMigrator.Runner;
 using Microsoft.EntityFrameworkCore;
+using MiniLink.Application.IUseCases;
+using MiniLink.Application.UseCases;
 using MiniLink.Domain.Repositories;
 using MiniLink.Infrastructure.Context;
 using MiniLink.Infrastructure.Repositories;
@@ -25,6 +27,8 @@ builder.Services.AddFluentMigratorCore()
 
 builder.Services.AddScoped(typeof(IRepositoryBase<>), typeof(RepositoryBase<>));
 builder.Services.AddScoped<ILinkRepository, LinkRepository>();
+
+builder.Services.AddScoped<ICreateLinkUseCase, CreateLinkUseCase>();
 
 var app = builder.Build();
 
