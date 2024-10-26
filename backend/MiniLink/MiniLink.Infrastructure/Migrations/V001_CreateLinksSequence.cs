@@ -11,17 +11,14 @@ public class V001_CreateLinksSequence : Migration
             .StartWith(1000)
             .IncrementBy(1)
             .MinValue(1000)
-            .MaxValue(long.MaxValue)
-            .Cache(1);
+            .MaxValue(long.MaxValue);
         
-        Execute.Sql("GRANT USAGE ON SEQUENCE SQ_LINKS TO dminilink;");
-        Execute.Sql("GRANT SELECT ON SEQUENCE SQ_LINKS TO dminilink;");
+        Execute.Sql("GRANT USAGE, SELECT ON SEQUENCE \"public\".\"SQ_LINKS\" TO dminilink;");
     }
 
     public override void Down()
     {
-        Execute.Sql("REVOKE SELECT ON SEQUENCE SQ_LINKS FROM dminilink;");
-        Execute.Sql("REVOKE USAGE ON SEQUENCE SQ_LINKS FROM dminilink;");
+        Execute.Sql("REVOKE USAGE, SELECT ON SEQUENCE \"public\".\"SQ_LINKS\" FROM dminilink;");
         
         Delete.Sequence("SQ_LINKS");
     }
