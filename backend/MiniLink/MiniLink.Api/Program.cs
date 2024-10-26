@@ -16,10 +16,10 @@ builder.Services.AddControllers().ConfigureApiBehaviorOptions(options =>
     options.InvalidModelStateResponseFactory = context =>
     {
         var errors = context.ModelState
-            .Where(e => e.Value.Errors.Count > 0)
+            .Where(e => e.Value?.Errors.Count > 0)
             .ToDictionary(
                 kvp => kvp.Key,
-                kvp => kvp.Value.Errors.Select(e => e.ErrorMessage).ToList()
+                kvp => kvp.Value?.Errors.Select(e => e.ErrorMessage).ToList()
             );
 
         var response = new ApiResponse<object>(
@@ -71,5 +71,6 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseAuthorization();
+app.UsePathBase("/api/v1");
 app.MapControllers();
 app.Run();
