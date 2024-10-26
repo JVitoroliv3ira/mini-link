@@ -1,6 +1,6 @@
 using System.Security.Cryptography;
 using MiniLink.Application.IUseCases;
-using MiniLink.Domain.Dtos.Link;
+using MiniLink.Domain.Dtos.Requests.Link;
 using MiniLink.Domain.Models;
 using MiniLink.Domain.Repositories;
 

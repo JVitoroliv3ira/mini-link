@@ -1,4 +1,4 @@
-namespace MiniLink.Domain.Dtos;
+namespace MiniLink.Domain.Dtos.Responses;
 
 public class ApiResponse<T>
 {

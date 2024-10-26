@@ -1,4 +1,4 @@
-using MiniLink.Domain.Dtos.Link;
+using MiniLink.Domain.Dtos.Requests.Link;
 using MiniLink.Domain.Models;
 
 namespace MiniLink.Application.IUseCases;

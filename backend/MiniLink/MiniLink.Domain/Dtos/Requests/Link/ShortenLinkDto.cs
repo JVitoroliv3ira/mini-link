@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace MiniLink.Domain.Dtos.Link;
+namespace MiniLink.Domain.Dtos.Requests.Link;
 
 public class ShortenLinkDto
 {
