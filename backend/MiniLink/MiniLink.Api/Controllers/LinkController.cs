@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using MiniLink.Application.IUseCases;
+using MiniLink.Domain.Dtos;
 using MiniLink.Domain.Dtos.Link;
 
 namespace MiniLink.Api.Controllers;
@@ -24,6 +25,16 @@ public class LinkController : ControllerBase
     [HttpPost("shorten")]
     public async Task<IActionResult> ShortenLink([FromBody] ShortenLinkDto request)
     {
+        if (!ModelState.IsValid)
+        {
+            var errors = ModelState.Values
+                .SelectMany(v => v.Errors)
+                .Select(e => e.ErrorMessage)
+                .ToList();
+            
+            return StatusCode(400, new ApiResponse<string>(false, "Erro de validação", null, errors));
+        }
+        
         try
         {
             var link = await _shortenLinkUseCase.Execute(request);
