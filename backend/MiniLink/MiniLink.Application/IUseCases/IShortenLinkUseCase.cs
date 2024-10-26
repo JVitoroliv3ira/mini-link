@@ -3,7 +3,7 @@ using MiniLink.Domain.Models;
 
 namespace MiniLink.Application.IUseCases;
 
-public interface ICreateLinkUseCase
+public interface IShortenLinkUseCase
 {
     Task<Link> Execute(CreateLinkDto dto);
 }

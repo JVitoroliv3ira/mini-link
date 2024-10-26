@@ -28,7 +28,7 @@ builder.Services.AddFluentMigratorCore()
 builder.Services.AddScoped(typeof(IRepositoryBase<>), typeof(RepositoryBase<>));
 builder.Services.AddScoped<ILinkRepository, LinkRepository>();
 
-builder.Services.AddScoped<ICreateLinkUseCase, CreateLinkUseCase>();
+builder.Services.AddScoped<IShortenLinkUseCase, ShortenLinkUseCase>();
 
 var app = builder.Build();
 

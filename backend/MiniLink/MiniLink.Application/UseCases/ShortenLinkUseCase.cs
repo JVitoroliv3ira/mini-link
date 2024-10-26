@@ -6,13 +6,13 @@ using MiniLink.Domain.Repositories;
 
 namespace MiniLink.Application.UseCases;
 
-public class CreateLinkUseCase : ICreateLinkUseCase
+public class ShortenLinkUseCase : IShortenLinkUseCase
 {
     private readonly ILinkRepository _linkRepository;
     private const int BytesToGenerate = 4;
     private const int DaysUntilExpiration = 7;
 
-    public CreateLinkUseCase(ILinkRepository linkRepository)
+    public ShortenLinkUseCase(ILinkRepository linkRepository)
     {
         _linkRepository = linkRepository;
     }
