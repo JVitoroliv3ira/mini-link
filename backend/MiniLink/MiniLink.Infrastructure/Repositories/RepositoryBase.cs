@@ -1,15 +1,16 @@
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
 using MiniLink.Domain.Repositories;
+using MiniLink.Infrastructure.Context;
 
 namespace MiniLink.Infrastructure.Repositories;
 
 public class RepositoryBase<T> : IRepositoryBase<T> where T : class
 {
-    private readonly DbContext _context;
+    private readonly ApplicationDbContext _context;
     private readonly DbSet<T> _dbSet;
 
-    public RepositoryBase(DbContext context)
+    public RepositoryBase(ApplicationDbContext context)
     {
         _context = context;
         _dbSet = context.Set<T>();
