@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MiniLink.Application.IUseCases;
 using MiniLink.Application.UseCases;
-using MiniLink.Domain.Dtos;
 using MiniLink.Domain.Dtos.Responses;
 using MiniLink.Domain.Repositories;
 using MiniLink.Infrastructure.Context;
@@ -38,9 +37,11 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var applicationConnectionString = Environment.GetEnvironmentVariable("SQL_CONN_APPLICATION")
-    ?? throw new InvalidOperationException("Variável de ambiente SQL_CONN_APPLICATION não encontrada");
+                                  ?? throw new InvalidOperationException(
+                                      "Variável de ambiente SQL_CONN_APPLICATION não encontrada");
 var migrationConnectionString = Environment.GetEnvironmentVariable("SQL_CONN_MIGRATION")
-    ?? throw new InvalidOperationException("Variável de ambiente SQL_CONN_MIGRATION não encontrada");
+                                ?? throw new InvalidOperationException(
+                                    "Variável de ambiente SQL_CONN_MIGRATION não encontrada");
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(applicationConnectionString));
@@ -51,6 +52,16 @@ builder.Services.AddFluentMigratorCore()
         .WithGlobalConnectionString(migrationConnectionString)
         .ScanIn(typeof(V001_CreateLinksSequence).Assembly).For.Migrations())
     .AddLogging(lb => lb.AddFluentMigratorConsole());
+
+builder.Services.AddCors(o =>
+{
+    o.AddPolicy("dev", p =>
+    {
+        p.AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader();
+    });
+});
 
 builder.Services.AddScoped(typeof(IRepositoryBase<>), typeof(RepositoryBase<>));
 builder.Services.AddScoped<ILinkRepository, LinkRepository>();
@@ -74,4 +85,5 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 app.UsePathBase("/api/v1");
 app.MapControllers();
+app.UseCors("dev");
 app.Run();
