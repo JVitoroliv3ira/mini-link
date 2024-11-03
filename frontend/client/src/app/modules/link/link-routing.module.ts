@@ -4,7 +4,9 @@ import { ShortenLinkComponent } from './pages/shorten-link/shorten-link.componen
 
 const routes: Routes = [
   {
-    path: '', component: ShortenLinkComponent
+    path: '',
+    component: ShortenLinkComponent,
+    title: 'MiniLink'
   }
 ];
 
