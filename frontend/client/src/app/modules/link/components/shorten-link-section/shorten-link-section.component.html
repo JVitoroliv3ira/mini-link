@@ -1,29 +1,21 @@
-<section class="flex flex-col items-center justify-center text-center px-4 w-full min-h-screen">
-  <h1 class="text-3xl md:text-5xl font-bold leading-tight mb-2">
+<section class="w-full max-w-3xl md:max-w-4xl lg:max-w-6xl min-h-screen flex flex-col items-center justify-center text-center p-4 mx-auto">
+  <h1 class="text-2xl md:text-4xl lg:text-5xl font-bold leading-snug md:leading-tight mb-3">
     <span class="typing-effect">Conecte, compartilhe e simplifique</span>
   </h1>
-  <span class="text-lg md:text-xl text-blue-600 mb-8 max-w-2xl">
+
+  <span class="text-base md:text-lg lg:text-xl text-blue-600 mb-6 max-w-2xl">
     Com o MiniLink, transforme links longos em URLs curtas, gerencie-os e acompanhe as métricas com facilidade.
   </span>
 
-  <div class="flex flex-col md:flex-row gap-4 w-full max-w-4xl mt-8">
-    <input
-      type="url"
-      placeholder="Insira o link que deseja encurtar..."
-      class="
-      flex-grow
-      p-4
-      text-gray-800
-      rounded-md
-      border
-      border-gray-300
-      focus:outline-none
-      focus:ring-2
-      focus:ring-blue-400
-      "
-    />
-    <button class="p-4 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 transition">
-      Encurtar URL
-    </button>
-  </div>
+  <mini-link-shorten-link-form
+    [loading]="loading"
+    (shortenLink)="shortenLink($event)"
+    class="w-full max-w-lg lg:max-w-2xl flex items-center justify-center"
+  ></mini-link-shorten-link-form>
+
+  <mini-link-shortened-link-result
+    class="w-full max-w-lg lg:max-w-2xl flex items-center justify-center mt-5"
+    originalUrl=""
+    shortUrl=""
+  ></mini-link-shortened-link-result>
 </section>

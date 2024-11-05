@@ -11,11 +11,11 @@ import { Observable } from 'rxjs';
 })
 export class LinkService extends BaseService {
   constructor(protected override http: HttpClient) {
-    super(http, 'http://localhost:5067/api/v1/link');
+    super(http, 'link');
   }
 
   public shorten(req: ShortenLinkRequest): Observable<ApiResponse<ShortenLinkResponse>> {
-    return this.post<ShortenLinkRequest, ApiResponse<ShortenLinkResponse>>('/shorten', req);
+    return this.post<ShortenLinkRequest, ApiResponse<ShortenLinkResponse>>('shorten', req);
   }
 };
 
